@@ -5,11 +5,11 @@ import { useState } from "react";
 
 import { api } from "@searchland/trpc/react";
 
-export function CreatePost() {
+export function CreateUser() {
   const router = useRouter();
   const [name, setName] = useState("");
 
-  const createPost = api.post.create.useMutation({
+  const createPost = api.users.create.useMutation({
     onSuccess: () => {
       router.refresh();
       setName("");
@@ -20,7 +20,7 @@ export function CreatePost() {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        createPost.mutate({ name });
+        // createPost.mutate({ name });
       }}
       className="flex flex-col gap-2"
     >

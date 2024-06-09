@@ -1,4 +1,4 @@
-import { postRouter } from "@searchland/server/api/routers/post";
+import { usersRouter } from "@searchland/server/api/routers/users";
 import { createCallerFactory, createTRPCRouter } from "@searchland/server/api/trpc";
 
 /**
@@ -7,7 +7,7 @@ import { createCallerFactory, createTRPCRouter } from "@searchland/server/api/tr
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
-  post: postRouter,
+  users: usersRouter
 });
 
 // export type definition of API

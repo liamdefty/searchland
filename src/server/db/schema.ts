@@ -3,7 +3,6 @@
 
 import { sql } from "drizzle-orm";
 import {
-  index,
   pgTableCreator,
   serial,
   timestamp,
@@ -18,17 +17,17 @@ import {
  */
 export const createTable = pgTableCreator((name) => `searchland_${name}`);
 
-export const posts = createTable(
-  "post",
+export const users = createTable(
+  "users",
   {
     id: serial("id").primaryKey(),
-    name: varchar("name", { length: 256 }),
+    firstName: varchar("name", { length: 256 }).notNull(),
+    lastName: varchar("name", { length: 256 }).notNull(),
+    email: varchar("name", { length: 256 }).notNull().unique(),
+    profilePicture: varchar("name", { length: 256 }),
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
     updatedAt: timestamp("updatedAt", { withTimezone: true }),
-  },
-  (example) => ({
-    nameIndex: index("name_idx").on(example.name),
-  })
+  }
 );
