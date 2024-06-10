@@ -7,14 +7,11 @@ export const usersRouter = createTRPCRouter({
   create: publicProcedure
     .input(createInsertSchema(users))
     .mutation(async ({ ctx, input }) => {
-      // simulate a slow db call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
       await ctx.db.insert(users).values(input);
     }),
 
-  get: publicProcedure.query(({ ctx }) => {
-    return ctx.db.query.users.findFirst({
+  all: publicProcedure.query(({ ctx }) => {
+    return ctx.db.query.users.findMany({
       orderBy: (users, { desc }) => [desc(users.createdAt)],
     });
   }),

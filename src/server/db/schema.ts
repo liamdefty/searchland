@@ -21,13 +21,12 @@ export const users = createTable(
   "users",
   {
     id: serial("id").primaryKey(),
-    firstName: varchar("name", { length: 256 }).notNull(),
-    lastName: varchar("name", { length: 256 }).notNull(),
-    email: varchar("name", { length: 256 }).notNull().unique(),
-    profilePicture: varchar("name", { length: 256 }),
+    firstName: varchar("first_name", { length: 256 }).notNull(),
+    lastName: varchar("last_name", { length: 256 }).notNull(),
+    email: varchar("email", { length: 256 }).notNull().unique(),
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
-    updatedAt: timestamp("updatedAt", { withTimezone: true }),
+    updatedAt: timestamp("updated_at", { withTimezone: true }),
   }
 );
