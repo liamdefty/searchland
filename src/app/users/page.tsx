@@ -37,7 +37,6 @@ export default function Users() {
       </header>
       <section className="relative overflow-x-auto sm:rounded-lg">
       {users.isLoading ? <>Loading...</> : (
-
         <table className="w-full text-sm text-left">
           <thead className="text-s uppercase bg-gray-300">
             <tr>
