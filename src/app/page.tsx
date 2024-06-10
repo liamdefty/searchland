@@ -8,13 +8,12 @@ export default async function Home() {
       </h1>
       <div className="grid grid-cols-1sm:grid-cols-2">
         <Link
-          className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
+          className="flex max-w-xs flex-col gap-4 rounded-xl border p-4"
           href="/users"
-          target="_blank"
         >
           <h3 className="text-2xl font-bold">Users →</h3>
           <div className="text-lg">
-            Find, manage and create users
+            Add, delete and view users
           </div>
         </Link>
       </div>
