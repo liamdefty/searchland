@@ -1,12 +1,13 @@
 
 import { createTRPCRouter, publicProcedure } from "@searchland/server/api/trpc";
-import { users, insertUserSchema } from "@searchland/server/db/schema";
+import { users } from "@searchland/server/db/schema";
 import { eq, count } from "drizzle-orm";
+import { createInsertSchema } from "drizzle-zod";
 import { z } from 'zod';
 
 export const usersRouter = createTRPCRouter({
   createUser: publicProcedure
-    .input(insertUserSchema)
+    .input(createInsertSchema(users))
     .mutation(async ({ ctx, input }) => {
       await ctx.db.insert(users).values(input);
     }),
