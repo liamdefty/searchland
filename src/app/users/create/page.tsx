@@ -38,7 +38,7 @@ export default function CreateUser() {
     <>
       <header>
         <Link
-          href="/"
+          href="/users"
           className="rounded-full p-3 font-semibold border"
         >
           ← Back
