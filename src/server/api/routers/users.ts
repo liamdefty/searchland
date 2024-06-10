@@ -1,16 +1,21 @@
-import { createInsertSchema } from 'drizzle-zod';
 
 import { createTRPCRouter, publicProcedure } from "@searchland/server/api/trpc";
-import { users } from "@searchland/server/db/schema";
+import { users, insertUserSchema } from "@searchland/server/db/schema";
+import { eq } from "drizzle-orm";
+import { z } from 'zod';
 
 export const usersRouter = createTRPCRouter({
-  create: publicProcedure
-    .input(createInsertSchema(users))
+  createUser: publicProcedure
+    .input(insertUserSchema)
     .mutation(async ({ ctx, input }) => {
       await ctx.db.insert(users).values(input);
     }),
 
-  all: publicProcedure.query(({ ctx }) => {
+  deleteUser: publicProcedure.input(z.object({ id: z.coerce.number() })).mutation(async ({ ctx, input }) => {
+    await ctx.db.delete(users).where(eq(users.id, input.id));
+  }),
+
+  getPaginatedUsers: publicProcedure.query(({ ctx }) => {
     return ctx.db.query.users.findMany({
       orderBy: (users, { desc }) => [desc(users.createdAt)],
     });

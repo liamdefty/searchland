@@ -27,7 +27,7 @@ export function CreateUser({ onSuccess }: CreateUserProps) {
     resolver: zodResolver(schema),
   });
 
-  const createUser = api.users.create.useMutation({
+  const createUser = api.users.createUser.useMutation({
     onSuccess,
   });
 

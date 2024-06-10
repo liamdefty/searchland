@@ -8,6 +8,7 @@ import {
   timestamp,
   varchar,
 } from "drizzle-orm/pg-core";
+import { createInsertSchema } from "drizzle-zod";
 
 /**
  * This is an example of how to use the multi-project schema feature of Drizzle ORM. Use the same
@@ -30,3 +31,5 @@ export const users = createTable(
     updatedAt: timestamp("updated_at", { withTimezone: true }),
   }
 );
+
+export const insertUserSchema = createInsertSchema(users);
